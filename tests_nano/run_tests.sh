@@ -9,11 +9,11 @@ FAILED=0
 TOTAL=0
 CURRENT=0
 
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-NC='\033[0m'
+RED=''
+GREEN=''
+YELLOW=''
+BLUE=''
+NC=''
 
 # Store failed tests for summary
 FAILED_TESTS=()
