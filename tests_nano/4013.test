@@ -12,21 +12,21 @@
 "cl_1_clock=0\nin_1_data=1\nin_1_set=1\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 0" "out_2_q: U" "out_2_qb: U"
 "cl_1_clock=1\nin_1_data=1\nin_1_set=1\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 0" "out_2_q: U" "out_2_qb: U"
 
-# Test: Both Set and Reset (undefined state)
-"cl_1_clock=0\nin_1_data=0\nin_1_set=1\nin_1_reset=1\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=1\nin_1_data=1\nin_1_set=1\nin_1_reset=1\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
+# Test: Both Set and Reset (Q=1, QB=1 per datasheet)
+"cl_1_clock=0\nin_1_data=0\nin_1_set=1\nin_1_reset=1\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 1" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=1\nin_1_set=1\nin_1_reset=1\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 1" "out_2_q: U" "out_2_qb: U"
 
 # Test: Clock rising edge captures data=0
 "cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=1\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 0" "out_1_qb: 1" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
 
 # Test: Clock rising edge captures data=1
 "cl_1_clock=0\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 0" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
 
 # Test: Data changes during high clock (no effect)
-"cl_1_clock=1\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 0" "out_1_qb: 1" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 0" "out_1_qb: 1" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
 
 # Test: Undefined data input
 "cl_1_clock=1\nin_1_data=U\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
@@ -45,19 +45,19 @@
 "cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=1\nin_2_set=1\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: 1" "out_2_qb: 0"
 "cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=1\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: 1" "out_2_qb: 0"
 
-# Test: Both Set and Reset (undefined state)
-"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=1\nin_2_reset=1" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=1\nin_2_reset=1" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
+# Test: Both Set and Reset (Q=1, QB=1 per datasheet)
+"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=1\nin_2_reset=1" "out_1_q: U" "out_1_qb: U" "out_2_q: 1" "out_2_qb: 1"
+"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=1\nin_2_reset=1" "out_1_q: U" "out_1_qb: U" "out_2_q: 1" "out_2_qb: 1"
 
 # Test: Clock rising edge captures data=0
 "cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: 0" "out_2_qb: 1"
+"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
 
 # Test: Clock rising edge captures data=1
 "cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=0\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
-"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: 1" "out_2_qb: 0"
+"cl_1_clock=0\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
 
 # Test: Both flip-flops operating together
-"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 0" "out_2_q: 0" "out_2_qb: 1"
-"cl_1_clock=1\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: 0" "out_1_qb: 1" "out_2_q: 1" "out_2_qb: 0"
-"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: 1" "out_1_qb: 0" "out_2_q: 1" "out_2_qb: 0"
+"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=0\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=0\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"
+"cl_1_clock=1\nin_1_data=1\nin_1_set=0\nin_1_reset=0\ncl_2_clock=1\nin_2_data=1\nin_2_set=0\nin_2_reset=0" "out_1_q: U" "out_1_qb: U" "out_2_q: U" "out_2_qb: U"

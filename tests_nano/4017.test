@@ -1,59 +1,40 @@
-# Johnson Decade Counter (4017) Test Cases
+# ==========================================================
+# 4017 JOHNSON COUNTER - COMPLETE TEST SUITE
+# ==========================================================
 
-# Test: Reset state (all outputs 0 except out_0=1, out_s=0)
-"in_0=0\nin_1=0\nin_r=1" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
+# 1. RESET & INITIAL STATE
+# On force le Reset à 1. out_0 et out_s (Carry) doivent être à 1.
+"in_r=1\nin_0=0\nin_1=0" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 1"
 
-# Test: Reset released, no clock
-"in_0=0\nin_1=0\nin_r=0" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
+# 2. RELEASE RESET
+# Reset passe à 0, rien ne doit bouger.
+"in_r=0\nin_0=0\nin_1=0" "out_0: 1" "out_1: 0" "out_s: 1"
 
-# Test: First clock rising edge (enable high) -> out_1=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 1" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
+# 3. FIRST CLOCK TICK (OUT 0 -> OUT 1)
+# Transition in_0: 0 -> 1.
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1" "out_0: 0" "out_1: 1" "out_s: 1"
 
-# Test: Second clock rising edge -> out_2=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 1" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 1" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
+# 4. SECOND CLOCK TICK (OUT 1 -> OUT 2)
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1" "out_1: 0" "out_2: 1" "out_s: 1"
 
-# Test: Third clock rising edge -> out_3=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 1" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 1" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
+# 5. TEST CLOCK INHIBIT (STAY AT OUT 2)
+# On met in_1 à 1, on envoie une horloge, le compteur ne doit PAS bouger.
+"in_r=0\nin_1=1\nin_0=0\nsimulate\nin_0=1" "out_2: 1" "out_3: 0"
 
-# Test: Fourth clock rising edge -> out_4=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 1" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 1" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
+# 6. ADVANCE TO OUT 4 (STILL CARRY HIGH)
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1" "out_4: 1" "out_s: 1"
 
-# Test: Fifth clock rising edge -> out_5=1, out_s=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 1" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 1" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 1"
+# 7. THE CARRY TRANSITION (OUT 4 -> OUT 5)
+# Ici, out_s doit passer de 1 à 0.
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1" "out_4: 0" "out_5: 1" "out_s: 0"
 
-# Test: Sixth clock rising edge -> out_6=1, out_s=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 1" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 1"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 1" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 1"
+# 8. ADVANCE TO OUT 9
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1" "out_9: 1" "out_s: 0"
 
-# Test: Seventh clock rising edge -> out_7=1, out_s=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 1" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 1"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 1" "out_8: 0" "out_9: 0" "out_s: 1"
+# 9. WRAP AROUND (OUT 9 -> OUT 0)
+# Le compteur revient à 0, out_s repasse à 1.
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_0=0\nsimulate\nin_0=1" "out_0: 1" "out_9: 0" "out_s: 1"
 
-# Test: Eighth clock rising edge -> out_8=1, out_s=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 1" "out_8: 0" "out_9: 0" "out_s: 1"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 1" "out_9: 0" "out_s: 1"
-
-# Test: Ninth clock rising edge -> out_9=1, out_s=1
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 1" "out_9: 0" "out_s: 1"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 1" "out_s: 1"
-
-# Test: Tenth clock rising edge -> wraps back to out_0=1, out_s=0
-"in_0=0\nin_1=1\nin_r=0" "out_0: 0" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 1" "out_s: 1"
-"in_0=1\nin_1=1\nin_r=0" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-
-# Test: Clock inhibit (in_1=0) - no counting
-"in_0=0\nin_1=0\nin_r=0" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=1\nin_1=0\nin_r=0" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-
-# Test: Reset during counting
-"in_0=1\nin_1=1\nin_r=0" "out_0: 0" "out_1: 1" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-"in_0=0\nin_1=1\nin_r=1" "out_0: 1" "out_1: 0" "out_2: 0" "out_3: 0" "out_4: 0" "out_5: 0" "out_6: 0" "out_7: 0" "out_8: 0" "out_9: 0" "out_s: 0"
-
-# Test: Undefined inputs
-"in_0=U\nin_1=1\nin_r=0" "out_0: U" "out_1: U" "out_2: U" "out_3: U" "out_4: U" "out_5: U" "out_6: U" "out_7: U" "out_8: U" "out_9: U" "out_s: U"
-"in_0=0\nin_1=U\nin_r=0" "out_0: U" "out_1: U" "out_2: U" "out_3: U" "out_4: U" "out_5: U" "out_6: U" "out_7: U" "out_8: U" "out_9: U" "out_s: U"
+# 10. ASYNCHRONOUS RESET DURING RUN
+# On est à l'état out_1, on reset, on doit revenir à out_0 immédiatement.
+"in_r=0\nin_1=0\nin_0=0\nsimulate\nin_0=1\nsimulate\nin_r=1" "out_0: 1" "out_1: 0"

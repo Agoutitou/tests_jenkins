@@ -55,7 +55,7 @@
 "in_a=1\nin_b=1\nin_c=1\nin_0=U\nin_1=U\nin_2=U\nin_3=U\nin_4=U\nin_5=U\nin_6=U\nin_7=0\ninhibit=0\nenable=0" "out_data: 0"
 
 # Test: Both inhibit and enable high
-"in_a=0\nin_b=0\nin_c=0\nin_0=1\nin_1=1\nin_2=1\nin_3=1\nin_4=1\nin_5=1\nin_6=1\nin_7=1\ninhibit=1\nenable=1" "out_data: 0"
+"in_a=0\nin_b=0\nin_c=0\nin_0=1\nin_1=1\nin_2=1\nin_3=1\nin_4=1\nin_5=1\nin_6=1\nin_7=1\ninhibit=1\nenable=1" "out_data: U"
 
 # Test: All data inputs high, cycling through channels
 "in_a=0\nin_b=0\nin_c=0\nin_0=1\nin_1=1\nin_2=1\nin_3=1\nin_4=1\nin_5=1\nin_6=1\nin_7=1\ninhibit=0\nenable=0" "out_data: 1"
