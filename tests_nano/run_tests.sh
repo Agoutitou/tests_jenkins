@@ -4,6 +4,7 @@
 
 BINARY="${1:-../nanotekspice}"
 TEST_DIR="$(dirname "$0")"
+XML_OUTPUT="${TEST_DIR}/results.xml"
 PASSED=0
 FAILED=0
 TOTAL=0
@@ -15,8 +16,51 @@ YELLOW=''
 BLUE=''
 NC=''
 
-# Store failed tests for summary
 FAILED_TESTS=()
+
+XML_TESTCASES=()
+START_TIME=$(date +%s)
+
+xml_escape() {
+    local s="$1"
+    s="${s//&/&amp;}"
+    s="${s//</&lt;}"
+    s="${s//>/&gt;}"
+    s="${s//\"/&quot;}"
+    s="${s//\'/&apos;}"
+    printf '%s' "$s"
+}
+
+get_time_ms() {
+    if command -v perl > /dev/null 2>&1; then
+        perl -MTime::HiRes=time -e 'printf "%.0f\n", time()*1000'
+    else
+        echo $(($(date +%s) * 1000))
+    fi
+}
+
+record_testcase() {
+    local classname="$1"
+    local testname="$2"
+    local status="$3"
+    local failure_msg="$4"
+    local duration="$5"
+
+    local escaped_name
+    escaped_name=$(xml_escape "$testname")
+    local escaped_class
+    escaped_class=$(xml_escape "$classname")
+
+    if [ "$status" = "pass" ]; then
+        XML_TESTCASES+=("    <testcase classname=\"${escaped_class}\" name=\"${escaped_name}\" time=\"${duration}\"/>")
+    else
+        local escaped_msg
+        escaped_msg=$(xml_escape "$failure_msg")
+        XML_TESTCASES+=("    <testcase classname=\"${escaped_class}\" name=\"${escaped_name}\" time=\"${duration}\">
+      <failure message=\"${escaped_msg}\">${escaped_msg}</failure>
+    </testcase>")
+    fi
+}
 
 if [ ! -f "$BINARY" ]; then
     echo -e "${RED}Error: Binary not found: $BINARY${NC}"
@@ -43,13 +87,21 @@ show_progress() {
 run_error_test() {
     local file="$1"
     local name=$(basename "$file" .nts)
+    local t_start t_end t_dur
 
+    t_start=$(get_time_ms)
     timeout 2 "$BINARY" "$file" > /dev/null 2>&1
-    if [ $? -eq 84 ]; then
+    local ec=$?
+    t_end=$(get_time_ms)
+    t_dur=$(awk "BEGIN{printf \"%.3f\", ($t_end - $t_start)/1000}")
+
+    if [ $ec -eq 84 ]; then
         PASSED=$((PASSED + 1))
+        record_testcase "error_tests" "$name" "pass" "" "$t_dur"
     else
         FAILED=$((FAILED + 1))
         FAILED_TESTS+=("$name (expected error 84)")
+        record_testcase "error_tests" "$name" "fail" "Expected exit code 84, got $ec" "$t_dur"
     fi
 
     CURRENT=$((CURRENT + 1))
@@ -65,20 +117,29 @@ run_test() {
     local expected_outputs=("$@")
     local name=$(basename "$file" .nts)
     local line_info=""
+    local classname="$name"
 
     if [ -n "$line_num" ]; then
         line_info=" (line $line_num)"
     fi
 
+    local t_start t_end t_dur
+    t_start=$(get_time_ms)
     output=$(echo -e "$commands" | timeout 5 "$BINARY" "$file" 2>&1)
     exit_code=$?
+    t_end=$(get_time_ms)
+    t_dur=$(awk "BEGIN{printf \"%.3f\", ($t_end - $t_start)/1000}")
+
+    local test_label="${name}${line_info}"
 
     if [ $exit_code -eq 124 ]; then
         FAILED=$((FAILED + 1))
         FAILED_TESTS+=("$name$line_info (timeout)")
+        record_testcase "$classname" "$test_label" "fail" "Timeout after 5s" "$t_dur"
     elif [ $exit_code -ne 0 ]; then
         FAILED=$((FAILED + 1))
         FAILED_TESTS+=("$name$line_info (exit code $exit_code)")
+        record_testcase "$classname" "$test_label" "fail" "Non-zero exit code: $exit_code" "$t_dur"
     elif [ ${#expected_outputs[@]} -gt 0 ]; then
         local all_matched=true
         local failed_patterns=()
@@ -92,12 +153,15 @@ run_test() {
 
         if $all_matched; then
             PASSED=$((PASSED + 1))
+            record_testcase "$classname" "$test_label" "pass" "" "$t_dur"
         else
             FAILED=$((FAILED + 1))
             FAILED_TESTS+=("$name$line_info - missing: ${failed_patterns[*]}")
+            record_testcase "$classname" "$test_label" "fail" "Missing patterns: ${failed_patterns[*]}" "$t_dur"
         fi
     else
         PASSED=$((PASSED + 1))
+        record_testcase "$classname" "$test_label" "pass" "" "$t_dur"
     fi
 
     CURRENT=$((CURRENT + 1))
@@ -155,7 +219,7 @@ for f in "$TEST_DIR"/*.test; do
     done < "$f"
 done
 
-local exit_value=0
+exit_value=0
 
 if [ $FAILED -gt 0 ]; then
     echo -e "\n${RED}Failed tests:${NC}"
@@ -173,5 +237,21 @@ echo -e "${GREEN}Passed: $PASSED${NC}"
 echo -e "${RED}Failed: $FAILED${NC}"
 echo -e "${BLUE}==================================${NC}"
 printf "\e[?25h"
+
+END_TIME=$(date +%s)
+TOTAL_TIME=$((END_TIME - START_TIME))
+
+{
+    echo '<?xml version="1.0" encoding="UTF-8"?>'
+    echo "<testsuites tests=\"${TOTAL}\" failures=\"${FAILED}\" errors=\"0\" time=\"${TOTAL_TIME}\">"
+    echo "  <testsuite name=\"nanotekspice\" tests=\"${TOTAL}\" failures=\"${FAILED}\" errors=\"0\" time=\"${TOTAL_TIME}\">"
+    for tc in "${XML_TESTCASES[@]}"; do
+        echo "$tc"
+    done
+    echo "  </testsuite>"
+    echo "</testsuites>"
+} > "$XML_OUTPUT"
+
+echo -e "${BLUE}JUnit XML report: ${XML_OUTPUT}${NC}"
 
 exit $exit_value
