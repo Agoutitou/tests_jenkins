@@ -1,0 +1,35 @@
+# NOT Gate Test Cases - Gate 1 (pins 1->2)
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=1\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 0" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=U\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: U" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+
+# NOT Gate Test Cases - Gate 2 (pins 3->4)
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=1\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 0" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=U\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: U" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+
+# NOT Gate Test Cases - Gate 3 (pins 5->6)
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=1\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 0" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=U\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: U" "out_08: 1" "out_10: 1" "out_12: 1"
+
+# NOT Gate Test Cases - Gate 4 (pins 9->8)
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=0\nin_09=1\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 0" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=0\nin_09=U\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: U" "out_10: 1" "out_12: 1"
+
+# NOT Gate Test Cases - Gate 5 (pins 11->10)
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=1\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 0" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=U\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: U" "out_12: 1"
+
+# NOT Gate Test Cases - Gate 6 (pins 13->12)
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=0" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 1"
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=1" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: 0"
+"in_01=0\nin_03=0\nin_05=0\nin_09=0\nin_11=0\nin_13=U" "out_02: 1" "out_04: 1" "out_06: 1" "out_08: 1" "out_10: 1" "out_12: U"
+
+# Combined test cases
+"in_01=1\nin_03=1\nin_05=1\nin_09=1\nin_11=1\nin_13=1" "out_02: 0" "out_04: 0" "out_06: 0" "out_08: 0" "out_10: 0" "out_12: 0"
+"in_01=1\nin_03=0\nin_05=1\nin_09=0\nin_11=1\nin_13=0" "out_02: 0" "out_04: 1" "out_06: 0" "out_08: 1" "out_10: 0" "out_12: 1"
+"in_01=0\nin_03=1\nin_05=0\nin_09=1\nin_11=0\nin_13=1" "out_02: 1" "out_04: 0" "out_06: 1" "out_08: 0" "out_10: 1" "out_12: 0"
+"in_01=U\nin_03=U\nin_05=U\nin_09=U\nin_11=U\nin_13=U" "out_02: U" "out_04: U" "out_06: U" "out_08: U" "out_10: U" "out_12: U"

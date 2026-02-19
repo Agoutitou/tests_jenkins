@@ -1,0 +1,10 @@
+# Error test: duplicate component names
+.chipsets:
+input a
+input a
+output s
+
+.links:
+a:1 s:1
+
+# Expected: error 84 - duplicate name

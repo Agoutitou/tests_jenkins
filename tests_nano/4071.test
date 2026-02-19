@@ -1,0 +1,48 @@
+# OR Gate Test Cases - Gate 1 (pins 1,2->3)
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=1\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 1" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=1\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 1" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=1\nin_02=1\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 1" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=U\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: U" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=U\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: U" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=U\nin_02=1\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 1" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=1\nin_02=U\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 1" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=U\nin_02=U\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: U" "out_04: 0" "out_10: 0" "out_11: 0"
+
+# OR Gate Test Cases - Gate 2 (pins 5,6->4)
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=1\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 1" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=1\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 1" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=1\nin_06=1\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 1" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=U\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: U" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=U\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: U" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=U\nin_06=1\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 1" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=1\nin_06=U\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 1" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=U\nin_06=U\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: U" "out_10: 0" "out_11: 0"
+
+# OR Gate Test Cases - Gate 3 (pins 8,9->10)
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=1\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 1" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=1\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 1" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=1\nin_09=1\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 1" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=U\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: U" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=U\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: U" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=U\nin_09=1\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 1" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=1\nin_09=U\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 1" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=U\nin_09=U\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: U" "out_11: 0"
+
+# OR Gate Test Cases - Gate 4 (pins 12,13->11)
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 0"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=1" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 1"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=1\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 1"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=1\nin_13=1" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 1"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=U\nin_13=0" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: U"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=0\nin_13=U" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: U"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=U\nin_13=1" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 1"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=1\nin_13=U" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: 1"
+"in_01=0\nin_02=0\nin_05=0\nin_06=0\nin_08=0\nin_09=0\nin_12=U\nin_13=U" "out_03: 0" "out_04: 0" "out_10: 0" "out_11: U"
+
+# Combined test cases
+"in_01=1\nin_02=1\nin_05=1\nin_06=1\nin_08=1\nin_09=1\nin_12=1\nin_13=1" "out_03: 1" "out_04: 1" "out_10: 1" "out_11: 1"
+"in_01=1\nin_02=0\nin_05=0\nin_06=1\nin_08=1\nin_09=0\nin_12=0\nin_13=1" "out_03: 1" "out_04: 1" "out_10: 1" "out_11: 1"
+"in_01=0\nin_02=1\nin_05=1\nin_06=0\nin_08=0\nin_09=1\nin_12=1\nin_13=0" "out_03: 1" "out_04: 1" "out_10: 1" "out_11: 1"

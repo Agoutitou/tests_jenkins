@@ -1,0 +1,29 @@
+.chipsets:
+input a1
+input b1
+input a2
+input b2
+input a3
+input b3
+input a4
+input b4
+4001 chip
+output s1
+output s2
+output s3
+output s4
+
+.links:
+a1:1 chip:1
+b1:1 chip:2
+chip:3 s1:1
+a2:1 chip:5
+b2:1 chip:6
+chip:4 s2:1
+a3:1 chip:8
+b3:1 chip:9
+chip:10 s3:1
+a4:1 chip:12
+b4:1 chip:13
+chip:11 s4:1
+

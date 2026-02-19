@@ -1,0 +1,6 @@
+# Error test: empty chipsets section
+.chipsets:
+
+.links:
+
+# Expected: error 84 - no valid component

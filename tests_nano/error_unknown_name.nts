@@ -1,0 +1,9 @@
+# Error test: unknown component name in links
+.chipsets:
+input a
+output s
+
+.links:
+unknown:1 s:1
+
+# Expected: error 84 - unknown component name

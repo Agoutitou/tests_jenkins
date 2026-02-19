@@ -1,0 +1,10 @@
+# Error test: unknown component type
+.chipsets:
+input a
+unknowncomponent x
+output s
+
+.links:
+a:1 s:1
+
+# Expected: error 84 - unknown component type
