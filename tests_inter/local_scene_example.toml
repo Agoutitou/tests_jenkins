@@ -1,0 +1,20 @@
+[[body]]
+name = "s1"
+position = {x = 0, y = 0, z = 0}
+type = "sphere"
+radius = 1
+[[body]]
+position = {x = 0, y = 0, z = 0}
+type = "cylinder"
+radius = 1
+height = 100 # optional. If not given, assume an infinite cylinder
+[[body]]
+position = {x = 0, y = 0, z = 0}
+type = "box"
+sides = {x = 10, y = 10, z = 10} # Gives the sides of the box in every direction
+[[body]]
+name = "t1"
+position = {x = 0, y = 0, z = 0}
+type = "torus"
+inner_radius = 3
+outer_radius = 1
